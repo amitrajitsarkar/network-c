@@ -22,10 +22,6 @@ int main() {
   server.sin_addr.s_addr = inet_addr(SERVER_IP);
   server.sin_port = htons(SERVER_PORT);
 
-  client.sin_family = AF_INET;
-  client.sin_addr.s_addr = inet_addr(CLIENT_IP);
-  client.sin_port = htons(CLIENT_PORT);
-
   sd = socket(AF_INET, SOCK_DGRAM, 0);
   int x = connect(sd, (struct sockaddr *)&server, sizeof(server));
 

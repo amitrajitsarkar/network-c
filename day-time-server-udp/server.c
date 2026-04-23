@@ -34,7 +34,6 @@ int main(){
         char *time_str = ctime(&now);
 
         sendto(sd ,time_str,strlen(time_str)+1,0,(struct sockaddr *)&client , clen);
-        printf("Sent date and time to the connected client...");
     }
     close(sd);
     return 0;

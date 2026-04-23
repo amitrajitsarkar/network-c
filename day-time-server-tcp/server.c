@@ -11,11 +11,11 @@
 
 
 #define SERVER_IP "127.0.0.1"
-#define SERVER_PORT 9400
+#define SERVER_PORT 4000
 
 int main(){
     struct sockaddr_in server ={0},client;
-    int sd,newS;
+    int sd,newS,clen = sizeof(client);
     char str[512];
 
     server.sin_family = AF_INET;
@@ -29,9 +29,12 @@ int main(){
     printf("TCP DAYTIME SERVER IS ONLINE...!\n");
 
     while(1){
+        newS = accept(sd ,(struct sockaddr *)&client ,&clen);
         time_t now = time(NULL);
         char *time_str = ctime(&now);
 
+        recv(newS,str,512,0);
+        send(newS,time_str,strlen(time_str),0);
     }
     close(sd);
     return 0;
